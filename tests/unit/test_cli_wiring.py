@@ -92,7 +92,7 @@ def test_install_category_help_includes_descriptions() -> None:
     output = " ".join(stripped.replace("│", " ").split())
 
     assert result.exit_code == 0
-    for category in Category:
+    for category in list(Category):
         assert category.value in output
         assert category.description in output
 
