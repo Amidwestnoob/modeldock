@@ -8,15 +8,13 @@ from modeldock.cli.console import print_error
 from modeldock.cli.factory import manager_for
 from modeldock.domain.model import Category
 
-
-def _category_help() -> str:
-    """Build help text from the domain category descriptions."""
-    descriptions = "; ".join(f"{item.value} ({item.description})" for item in Category)
-    return f"Category name. Available: {descriptions}"
+_CATEGORY_HELP: str = "Category name. Available: " + "; ".join(
+    f"{item.value} ({item.description})" for item in Category
+)
 
 
 def install_category_cmd(
-    category: str = typer.Argument(..., help=_category_help()),
+    category: str = typer.Argument(..., help=_CATEGORY_HELP),
     backend: str = typer.Option(None, "--backend", help="Runtime backend"),
     debug: bool = typer.Option(False, "--debug", help="Show traceback"),
 ) -> None:
